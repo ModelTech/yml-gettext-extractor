@@ -1,5 +1,5 @@
 {
-    "name": "eisberg/yml-gettext-extractor",
+    "name": "ModelTech/yml-gettext-extractor",
     "description": "The YAML Gettext Extractor is Poedit friendly tool which extracts translations from YML config.",
     "type": "library",
     "require": {
