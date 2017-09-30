@@ -1,8 +1,8 @@
-YAML Gettext Extractor [![Build Status](https://secure.travis-ci.org/eisberg/YAML-Gettext-Extractor.svg?branch=master)](http://travis-ci.org/eisberg/YAML-Gettext-Extractor)
+YAML Gettext Extractor [![Build Status](https://secure.travis-ci.org/ModelTech/YAML-Gettext-Extractor.svg?branch=master)](http://travis-ci.org/ModelTech/YAML-Gettext-Extractor)
 ======================
 
 The YAML Gettext Extractor is [Poedit](http://www.poedit.net/download.php)
-friendly tool which extracts translations from twig templates.
+friendly tool which extracts translations from YAML file.
 
 ## Installation
 
@@ -18,7 +18,7 @@ You can run these commands to easily access ``yml-gettext-extractor`` from anywh
 your system:
 
 ```bash
-$ sudo wget https://github.com/eisberg/YAML-Gettext-Extractor/releases/download/1.0.0/yml-gettext-extractor.phar -O /usr/local/bin/yml-gettext-extractor
+$ sudo wget https://github.com/ModelTech/YAML-Gettext-Extractor/releases/download/1.0.0/yml-gettext-extractor.phar -O /usr/local/bin/yml-gettext-extractor
 $ sudo chmod a+x /usr/local/bin/yml-gettext-extractor
 ```
 Then, just run ``yml-gettext-extractor``.
@@ -28,13 +28,13 @@ Then, just run ``yml-gettext-extractor``.
 #### Local
 
 ```bash
-$ composer require eisberg/yml-gettext-extractor
+$ composer require ModelTech/yml-gettext-extractor
 ```
 
 #### Global
 
 ```bash
-$ composer global require eisberg/yml-gettext-extractor
+$ composer global require ModelTech/yml-gettext-extractor
 ```
 
 Make sure you have ``~/.composer/vendor/bin`` in your ``PATH`` and

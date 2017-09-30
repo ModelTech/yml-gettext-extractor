@@ -80,7 +80,7 @@ class ExtractorTest extends \PHPUnit\Framework\TestCase
 
     public function testExtractNoTranslations()
     {
-        $extractor = new Extractor( );
+        $extractor = new Extractor();
 
         $extractor->addResource(__DIR__ . '/Fixtures/empty.yml');
         $extractor->setOut($this->getPotFile());
@@ -89,9 +89,9 @@ class ExtractorTest extends \PHPUnit\Framework\TestCase
 
 
         $extractor->extract();
-        $catalog = $this->loader->load($this->getPotFile(), null );
+        $catalog = $this->loader->load($this->getPotFile(), null);
 
-         $this->assertEmpty($catalog->all('messages'));
+        $this->assertEmpty($catalog->all('messages'));
     }
 
     private function getPotFile()
@@ -106,5 +106,4 @@ class ExtractorTest extends \PHPUnit\Framework\TestCase
             unlink($this->getPotFile());
         }
     }
-
 }

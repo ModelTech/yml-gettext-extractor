@@ -15,7 +15,6 @@ use Symfony\Component\Translation\Dumper\PoFileDumper;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Translation\MessageCatalogue;
 
-
 /**
  * Extracts translations from twig templates.
  *
@@ -44,9 +43,9 @@ class Extractor
      */
     private $resources;
 
-    public function __construct(  )
+    public function __construct()
     {
-         $this->reset();
+        $this->reset();
     }
 
     /**
@@ -70,9 +69,11 @@ class Extractor
 
     public function addResource($path)
     {
-        if(file_exists($path))
+        if (file_exists($path)) {
             $this->resources[] = $path;
+        }
     }
+
     public function addKey($fn)
     {
         $this->whiteList[] = $fn;
@@ -82,8 +83,7 @@ class Extractor
     public function extract()
     {
         $domain = $this->domain;
-        foreach($this->resources as $resource) {
-
+        foreach ($this->resources as $resource) {
             $cfg = Yaml::parse(file_get_contents($resource));
 
             $whiteList = $this->whiteList;
@@ -91,39 +91,35 @@ class Extractor
             $messages = $this->catalogue;
 
             //Пробегаемся рекурсивно по конфигу, и находим нужные записи
-            array_walk_recursive($cfg, function ($item, $key) use ($whiteList, &$messages,$domain) {
+            array_walk_recursive($cfg, function ($item, $key) use ($whiteList, &$messages, $domain) {
                 if (in_array($key, $whiteList) and is_scalar($item)) {
-                    $messages->add([$item => null],$domain);
+                    $messages->add([$item => null], $domain);
                 }
-
             });
-
         }
 
 
         //Сбразываем результат
         $dir = sys_get_temp_dir();
         $po = new PoFileDumper();
-        $po->dump($this->catalogue, ['path'=>$dir]);
-        $tmpFile = $dir.DIRECTORY_SEPARATOR.$domain.'.en.po';
+        $po->dump($this->catalogue, ['path' => $dir]);
+        $tmpFile = $dir . DIRECTORY_SEPARATOR . $domain . '.en.po';
 
-        if(!count($this->catalogue->all())){
+        if (!count($this->catalogue->all())) {
             // Когда нет переводов, пустой файл не создается,
             //Из за этого падает poedit. Формируем пустой файл
             file_put_contents($tmpFile, $po->formatCatalogue($this->catalogue, $this->domain));
         }
-        if(file_exists($tmpFile) and isset($this->outFile))
-        {
-            if(file_exists($this->outFile))
+        if (file_exists($tmpFile) and isset($this->outFile)) {
+            if (file_exists($this->outFile)) {
                 unlink($this->outFile);
+            }
             rename($tmpFile, $this->outFile);
-
         }
 
-        if(file_exists($tmpFile))
-        unlink($tmpFile);
+        if (file_exists($tmpFile)) {
+            unlink($tmpFile);
+        }
         $this->reset();
     }
-
-
 }
