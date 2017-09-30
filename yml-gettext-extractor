@@ -1,0 +1,57 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * This file is part of the YAML Gettext utility.
+ *
+ *  (c) Alexander Rakushin <lexander.r@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+/**
+ * Extracts translations from YAML config.
+ *
+ * @author Alexander Rakushin <lexander.r@gmail.com>
+ */
+//
+if (file_exists($a = __DIR__ . '/../../autoload.php')) {
+    require_once $a;
+} else {
+    require_once __DIR__ . '/vendor/autoload.php';
+}
+
+// You can add more extensions here, or via command line with the --functions and --filter options
+//
+array_shift($_SERVER['argv']);
+
+$addKey = false;
+$addInputFile = false;
+$setOut = false;
+
+$extractor = new Yml\Gettext\Extractor( );
+
+
+$list = $_SERVER['argv'];
+foreach ($list as $index=> $arg) {
+    if ('--files' === $arg) {
+        $addInputFile = true;
+        $addKey = false;
+    } else if ($addInputFile) { 
+
+        $extractor->addResource(  $arg);
+      
+    } else if ($arg === '--out') {
+        $addKey = false;
+        $addInputFile = false;
+        $extractor->setOut($list[$index+1]);
+    }  else if ('--keys' === $arg) {
+        $addKey = true;
+        $addInputFile = false;
+    } else if ($addKey) {
+        $extractor->addKey( $arg );
+    }
+}
+
+$extractor->extract();

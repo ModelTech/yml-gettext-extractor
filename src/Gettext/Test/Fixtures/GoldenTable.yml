@@ -1,0 +1,78 @@
+style:
+  groupingRow:
+    fill:
+      type: 'solid'
+      color:
+        rgb: 'AFCCEE'
+    font:
+      style: 'italic'
+      weight: 'bold'
+      color:
+        rgb: '000000'
+
+columns:
+  date:
+    ctype: 'dat'
+    text: 'Date'
+    dataIndex: 'date'
+    format: 'd.m.Y'
+    width: 90
+  pad:
+    text: 'Hello %name%!'
+    tooltip: 'Hey %name%, I have one apple.'
+    dataIndex: 'padName'
+    width: 70
+  wellName:
+    text: 'Hello World!'
+    dataIndex: 'wellName'
+    width: 80
+  flowLineName:
+    text: 'sd.'
+    dataIndex: 'flowLineName'
+    width: 80
+  layers:
+    text: 'Hey %name%, I have %count% apples.'
+    dataIndex: 'layers'
+    width: 200
+  oilRateCondensed:
+    ctype: 'num'
+    text: 'Oil rate'
+    dataIndex: 'oilRateCondensed'
+    format: '0.0'
+    width: 100
+  liquidRateCondensed:
+    ctype: 'num'
+    text: 'Liq.rate'
+    dataIndex: 'liquidRateCondensed'
+    format: '0.0'
+    width: 100
+  wc:
+    ctype: 'num'
+    text: 'WC'
+    dataIndex: 'wc'
+    format: '0.00'
+    width: 60
+  injRate:
+    ctype: 'num'
+    text: 'Inj.rate'
+    dataIndex: 'injRate'
+    format: '0.0'
+    width: 100
+  injRateFactor:
+    ctype: 'num'
+    text: 'Inj.rate'
+    dataIndex: 'injRateFactor'
+    format: '0.00'
+    width: 100
+  kEff:
+    ctype: 'num'
+    text: 'Keff'
+    dataIndex: 'kEfficiency'
+    format: '0.00'
+    width: 70
+  effectiveInj:
+    ctype: 'num'
+    text: 'Eff.Inj.'
+    dataIndex: 'effectiveInj'
+    format: '0.00'
+    width: 70
