@@ -76,7 +76,7 @@ class Extractor
 
     public function addKey($fn)
     {
-        $this->whiteList[] = $fn;
+        $this->whiteList[] = rtrim($fn, ':');
     }
 
 
@@ -86,6 +86,9 @@ class Extractor
         foreach ($this->resources as $resource) {
             $cfg = Yaml::parse(file_get_contents($resource));
 
+            if (!$cfg) {
+                $cfg = [];
+            }
             $whiteList = $this->whiteList;
 
             $messages = $this->catalogue;
